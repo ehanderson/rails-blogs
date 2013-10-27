@@ -1,0 +1,34 @@
+<!-- 
+:post gives instruction to the form
+url: post_path (post_path is a helper aka create) tells where the information to go -->
+<%= form_for :post, url: posts_path do |f| %>
+  <% if @post.errors.any? %>
+  <div id="errorExplanation">
+
+<!-- pluralize takes in num and a string.
+if num > 1 the string will be plurized for you -->
+    
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <% end %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :post %><br>
+    <%= f.text_area :post %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
